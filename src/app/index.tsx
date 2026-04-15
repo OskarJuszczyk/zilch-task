@@ -1,5 +1,5 @@
-import { View } from 'react-native';
+import { CardPreviewScreen } from '@cards/screens/CardPreviewScreen';
 
 export default function CardPreviewPage() {
-    return <View />;
+    return <CardPreviewScreen />;
 }
