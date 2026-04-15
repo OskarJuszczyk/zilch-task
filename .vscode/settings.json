@@ -1,0 +1,43 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.experimental.useTsgo": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "oxc.enable": true,
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifierEnding": "auto",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifierEnding": "auto",
+    "cSpell.words": ["Kidster", "oxfmt", "oxlint", "Pressable", "unistyles", "bunx", "mmkv", "Skia", "Jetpack", "tsgo"],
+    "jestrunner.jestCommand": "bun jest --coverage=false",
+    "jestrunner.preserveEditorFocus": true,
+    "jestrunner.codeLens": ["run", "debug", "watch"],
+    "editor.formatOnPaste": true,
+    "html.format.enable": false,
+    "json.format.enable": false,
+    "scss.format.enable": false,
+    "less.format.enable": false,
+    "css.format.enable": false,
+    "javascript.format.enable": false,
+    "typescript.format.enable": false,
+    "yaml.format.enable": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "extends": "expo/tsconfig.base",
+    "compilerOptions": {
+        "types": ["jest"],
+        "strict": true,
+        "noImplicitReturns": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "incremental": true,
+        "tsBuildInfoFile": ".tsbuildinfo",
+        "paths": {
+            "@components/*": ["./src/components/*"],
+            "@hooks/*": ["./src/hooks/*"],
+            "@consts/*": ["./src/consts/*"],
+            "@utils/*": ["./src/utils/*"],
+            "@store/*": ["./src/store/*"],
+            "@features/*": ["./src/features/*"],
+            "@cards/*": ["./src/features/cards/*"],
+            "@assets/*": ["./src/assets/*"],
+            "@static/*": ["./assets/*"],
+            "@styles/*": ["./src/styles/*"],
+            "@i18n/*": ["./src/i18n/*"],
+            "__mocks__/*": ["./__mocks__/*"]
+        }
+    },
+    "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}

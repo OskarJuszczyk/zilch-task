@@ -1,0 +1,65 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "avoid",
+    "printWidth": 150,
+    "tabWidth": 4,
+    "bracketSameLine": true,
+    "sortPackageJson": true,
+    "ignorePatterns": ["/.expo", "node_modules", "ios", "android", "./assets", "*.lock", "e2e", "setupIntl.ts"],
+    "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.json", "**/*.jsonc"],
+    "exclude": [".expo", "node_modules", "ios", "android", "assets", "e2e", "dist", "setupIntl.ts"],
+    "overrides": [
+        {
+            "files": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs"],
+            "excludeFiles": ["**/*.test.ts", "**/*.test.tsx", "**/__tests__/**"],
+            "options": {
+                "sortImports": {
+                    "groups": [
+                        "react-internal",
+                        "react-native-internal",
+                        "react-libs",
+                        "expo-libs",
+                        ["value-builtin", "value-external"],
+                        "internal-aliases",
+                        ["value-parent", "value-sibling", "value-index"],
+                        "unknown"
+                    ],
+                    "newlinesBetween": true,
+                    "order": "asc",
+                    "ignoreCase": true,
+                    "customGroups": [
+                        {
+                            "groupName": "react-internal",
+                            "elementNamePattern": ["react"]
+                        },
+                        {
+                            "groupName": "react-native-internal",
+                            "elementNamePattern": ["react-native"]
+                        },
+                        {
+                            "groupName": "react-libs",
+                            "elementNamePattern": ["react*", "react-native*", "@testing-library/*"]
+                        },
+                        {
+                            "groupName": "expo-libs",
+                            "elementNamePattern": ["expo", "expo*"]
+                        },
+                        {
+                            "groupName": "internal-aliases",
+                            "elementNamePattern": ["@*/**"]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "files": ["**/*.json", "**/*.jsonc"],
+            "options": {
+                "trailingComma": "none"
+            }
+        }
+    ]
+}

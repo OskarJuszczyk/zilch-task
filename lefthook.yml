@@ -1,0 +1,15 @@
+pre-commit:
+    jobs:
+        - name: format
+          glob: '*.{js,jsx,ts,tsx,json,md,css,yaml,yml}'
+          run: bun format:fix {staged_files}
+          stage_fixed: true
+
+pre-push:
+    parallel: true
+    jobs:
+        - name: type-check
+          run: bun run type:check
+
+        - name: lint
+          run: bun run lint
