@@ -65,6 +65,9 @@ beforeEach(() => {
     mockMmkvStore.clear();
     mockMmkvListeners.clear();
 
+    jest.mock('@store/globalStore', () => ({
+        globalJotaiStore: jest.requireActual('jotai/index').createStore(),
+    }));
     jest.mock('jotai', () => {
         const jotai = jest.requireActual('jotai/index');
 

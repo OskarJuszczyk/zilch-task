@@ -2,10 +2,11 @@ import 'tsx/cjs';
 import { ConfigContext, ExpoConfig } from 'expo/config';
 
 import { SUPPORTED_LANGUAGES } from '@i18n/resources';
+import theme from '@styles/theme';
 
 const PACKAGE = 'com.ZilchTask';
 
-const bgColor = '#ffffff'
+const bgColor = theme.color.surface.default;
 
 export default ({ config }: ConfigContext): ExpoConfig => {
     return {
