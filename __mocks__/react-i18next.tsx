@@ -2,8 +2,6 @@ import React, { PropsWithChildren, ReactNode, createElement, forwardRef } from '
 
 import { Text, View } from 'react-native';
 
-import { TestProps } from '@utils/testing/testProps';
-
 export const translationWithParams = (key: string, params: object) => `${key} ${JSON.stringify(params)}`;
 
 export const t = jest.fn().mockImplementation((key: string, params: object) => {
@@ -57,7 +55,7 @@ module.exports = {
     translationWithParams,
 };
 
-type MockComponentProps = { children?: ReactNode } & TestProps;
+type MockComponentProps = { children?: ReactNode }
 
 export const MockComponent = forwardRef<View, MockComponentProps>(({ children, ...props }, ref) => {
     return createElement(View, { ...props, ref }, children);
