@@ -1,0 +1,50 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": ["import", "react", "unicorn", "typescript"],
+    "categories": {},
+    "env": {
+        "builtin": true,
+        "es2022": true,
+        "node": true
+    },
+    "globals": {},
+    "ignorePatterns": [".expo", "coverage/**", ".claude", ".agents"],
+    "rules": {
+        "no-console": "error",
+        "@typescript-eslint/no-redeclare": "off",
+        "@typescript-eslint/no-empty-object-type": "off",
+        "react/display-name": "off",
+        "react/jsx-boolean-value": "off",
+        "no-extend-native": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error",
+        "react-native/no-color-literals": "error",
+        "react-native/no-inline-styles": "error",
+        "react-native/no-unused-styles": "error",
+        "no-duplicate-imports": "error",
+        "no-restricted-imports": [
+            "error",
+            {
+                "patterns": ["./src/**", "../src/**", "src/**", "./**/*", "./*"]
+            }
+        ],
+        "jest-extended/prefer-to-be-true": "warn",
+        "jest-extended/prefer-to-be-false": "error",
+        "curly": "error"
+    },
+    "overrides": [
+        {
+            "files": ["./app.config.ts"],
+            "rules": {
+                "no-restricted-imports": "error"
+            }
+        }
+    ],
+    "jsPlugins": [
+        "eslint-plugin-expo",
+        "eslint-plugin-react-compiler",
+        "eslint-plugin-react-native",
+        "eslint-plugin-testing-library",
+        "eslint-plugin-jest-extended"
+    ]
+}

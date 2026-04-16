@@ -1,0 +1,26 @@
+[
+    {
+        "label": "test \"$ZED_SYMBOL\"",
+        "command": "cd $ZED_DIRNAME && bun run test:unit",
+        "args": ["$ZED_FILENAME", "-t='$ZED_SYMBOL'"],
+        "tags": ["ts-test", "js-test"]
+    },
+    {
+        "label": "watch tests \"$ZED_SYMBOL\"",
+        "command": "cd $ZED_DIRNAME && bun run test:unit",
+        "args": ["$ZED_FILENAME", "-t='$ZED_SYMBOL'", "--watch"],
+        "tags": ["ts-test", "js-test"]
+    },
+    {
+        "label": "test \"$ZED_FILENAME\"",
+        "command": "cd $ZED_DIRNAME && bun run test:unit",
+        "args": ["$ZED_FILENAME"],
+        "tags": ["ts-test", "js-test"]
+    },
+    {
+        "label": "watch tests \"$ZED_FILENAME\"",
+        "command": "cd $ZED_DIRNAME && bun run test:unit",
+        "args": ["$ZED_FILENAME", "--watch"],
+        "tags": ["ts-test", "js-test"]
+    }
+]
