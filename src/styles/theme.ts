@@ -95,6 +95,11 @@ const tokens = {
                 default: '#D5D9D4',
                 muted: '#AFB6AF',
             },
+            inverted: {
+                strong: '#121615',
+                default: '#8A938C',
+                muted: '#F3F3F2',
+            },
             critical: {
                 strong: '#F9C8D0',
                 default: '#F17E8E',
