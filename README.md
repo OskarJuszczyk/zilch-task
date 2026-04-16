@@ -4,7 +4,6 @@ React Native showcase app built with Expo SDK 55. Demonstrates cards management 
 
 ## Demo
 
-<img width="322" height="720" alt="androidtask-ezgif com-video-to-gif-converter (1)" src="https://github.com/user-attachments/assets/f0598878-a1e5-44f0-84c9-51d24fdae6fd" />
 <img width="221" height="480" alt="zilch-task-recording-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/e9a68dca-c62e-4649-9e16-57b4f009a50e" />
 
 
