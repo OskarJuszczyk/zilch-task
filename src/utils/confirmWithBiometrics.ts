@@ -2,6 +2,7 @@ import { authenticateAsync } from 'expo-local-authentication';
 
 import i18next from 'i18next';
 
+import { CONFIG } from '@consts/config';
 import { log } from '@utils/logger';
 
 export type OnConfirmWithBiometricsErrorParams = { success: false; error: string; warning?: string };
@@ -15,6 +16,11 @@ export async function confirmWithBiometrics({
     onAuthError?: (params: OnConfirmWithBiometricsErrorParams) => void;
     onUserCancel?: VoidFunction;
 }) {
+    if (CONFIG.E2E_BYPASS_BIOMETRICS) {
+        onSuccess?.();
+        return;
+    }
+
     try {
         const result = await authenticateAsync({
             disableDeviceFallback: true,

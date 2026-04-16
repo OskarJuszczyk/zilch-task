@@ -1,0 +1,27 @@
+appId: com.ZilchTask
+# Requires E2E build: EXPO_PUBLIC_E2E_BYPASS_BIOMETRICS=true bunx expo run:ios
+---
+- launchApp
+- assertVisible: "Mortgage Payments"
+# Tap details (biometric bypassed in E2E build)
+- tapOn:
+    id: "unlock-details"
+- extendedWaitUntil:
+    visible:
+        id: "card-details-sheet-content"
+    timeout: 3000
+# Assert sheet content
+- assertVisible: "Card details"
+- assertVisible: "Cardholder"
+- assertVisible: "Oliver Bennett"
+- assertVisible: "Card number"
+- assertVisible: "999988******1234"
+- assertVisible: "Expiry date"
+# Dismiss sheet by swiping down
+- swipe:
+    direction: DOWN
+    duration: 300
+- extendedWaitUntil:
+    notVisible:
+        id: "card-details-sheet-content"
+    timeout: 3000

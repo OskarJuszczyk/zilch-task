@@ -1,0 +1,20 @@
+appId: com.ZilchTask
+---
+- launchApp
+- assertVisible: "Mortgage Payments"
+- assertVisible: "Freeze"
+# Freeze the card
+- tapOn:
+    id: "freeze"
+- extendedWaitUntil:
+    visible: "Unfreeze"
+    timeout: 3000
+- assertVisible: "Unfreeze"
+- assertVisible: "Card frozen"
+# Unfreeze the card
+- tapOn:
+    id: "unfreeze"
+- extendedWaitUntil:
+    visible: "Freeze"
+    timeout: 3000
+- assertVisible: "Freeze"

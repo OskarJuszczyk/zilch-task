@@ -1,0 +1,13 @@
+appId: com.ZilchTask
+---
+- launchApp
+- assertVisible: "Mortgage Payments"
+- assertVisible: "Physical"
+- assertVisible:
+    id: "unlock-details"
+- assertVisible:
+    id: "freeze"
+- assertVisible:
+    id: "limit"
+- assertVisible:
+    id: "settings"

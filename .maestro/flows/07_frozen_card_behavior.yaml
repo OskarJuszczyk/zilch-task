@@ -1,0 +1,26 @@
+appId: com.ZilchTask
+---
+- launchApp
+- assertVisible: "Mortgage Payments"
+# Swipe to card 4 (Frozen Card) - 4 swipes
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- assertVisible: "Frozen Card"
+- assertVisible: "Card frozen"
+- assertVisible: "Unfreeze"
+- assertVisible:
+    id: "unlock-details"

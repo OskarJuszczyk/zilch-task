@@ -1,0 +1,12 @@
+appId: com.ZilchTask
+---
+- launchApp
+- assertVisible: "Mortgage Payments"
+# Tap disabled Limits button - nothing should happen
+- tapOn:
+    id: "limit"
+- assertVisible: "Mortgage Payments"
+# Tap disabled Settings button - nothing should happen
+- tapOn:
+    id: "settings"
+- assertVisible: "Mortgage Payments"
