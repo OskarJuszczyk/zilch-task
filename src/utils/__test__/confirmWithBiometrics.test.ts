@@ -1,5 +1,6 @@
 import { authenticateAsync } from 'expo-local-authentication';
 
+import * as configModule from '@consts/config';
 import { confirmWithBiometrics } from '@utils/confirmWithBiometrics';
 
 jest.mock('expo-local-authentication', () => ({
@@ -63,5 +64,45 @@ describe('confirmWithBiometrics', () => {
         await confirmWithBiometrics({ onSuccess: jest.fn() });
 
         expect(log.error).toHaveBeenCalledWith(error);
+    });
+
+    describe('E2E biometric bypass', () => {
+        beforeEach(() => {
+            Object.defineProperty(configModule, 'CONFIG', {
+                value: { ...configModule.CONFIG, E2E_BYPASS_BIOMETRICS: true },
+                configurable: true,
+            });
+        });
+
+        afterEach(() => {
+            Object.defineProperty(configModule, 'CONFIG', {
+                value: { ...configModule.CONFIG, E2E_BYPASS_BIOMETRICS: false },
+                configurable: true,
+            });
+        });
+
+        it('calls onSuccess immediately without authenticating', async () => {
+            const onSuccess = jest.fn();
+
+            await confirmWithBiometrics({ onSuccess });
+
+            expect(onSuccess).toHaveBeenCalled();
+            expect(mockAuthenticateAsync).not.toHaveBeenCalled();
+        });
+
+        it('does not call onAuthError or onUserCancel', async () => {
+            const onAuthError = jest.fn();
+            const onUserCancel = jest.fn();
+
+            await confirmWithBiometrics({ onSuccess: jest.fn(), onAuthError, onUserCancel });
+
+            expect(onAuthError).not.toHaveBeenCalled();
+            expect(onUserCancel).not.toHaveBeenCalled();
+        });
+
+        it('does not throw when onSuccess is not provided', async () => {
+            await expect(confirmWithBiometrics({})).resolves.toBeUndefined();
+            expect(mockAuthenticateAsync).not.toHaveBeenCalled();
+        });
     });
 });

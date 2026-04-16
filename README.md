@@ -66,6 +66,49 @@ bun run ios              # Run on iOS simulator
 | `bun run test:e2e`               | Run all Maestro e2e flows |
 | `bun run test:e2e:single <file>` | Run a single Maestro flow |
 
+### E2E Testing (Maestro)
+
+Maestro tests run against a real app on an iOS Simulator or Android Emulator.
+
+**Setup:**
+
+```bash
+brew install maestro         # Install Maestro CLI
+bun run ios                  # Build & run on iOS Simulator
+```
+
+**Running tests:**
+
+```bash
+bun run test:e2e                                    # Run all 8 flows
+bun run test:e2e:single .maestro/flows/01_app_launch.yaml  # Run single flow
+```
+
+Failed tests produce screenshots in `.maestro/screenshots/`.
+
+**Flows:**
+
+| Flow | What it tests |
+|------|--------------|
+| `01_app_launch` | First card visible, action buttons present |
+| `02_carousel_navigation` | Swipe between cards, banner/actions toggle |
+| `03_active_card_actions` | Button labels and testIDs |
+| `04_freeze_unfreeze` | Freeze toggle with animation wait |
+| `05_status_banners` | BLOCKED/PENDING/EXPIRED banner text |
+| `06_card_details_sheet` | Bottom sheet open, content, dismiss |
+| `07_frozen_card_behavior` | Pre-frozen card shows unfreeze |
+| `08_disabled_buttons` | Limits/Settings tap does nothing |
+
+**Biometric bypass for E2E:**
+
+Flow 06 taps "Card details" which triggers biometrics. To bypass, add to `.env.local`:
+
+```
+EXPO_PUBLIC_E2E_BYPASS_BIOMETRICS=true
+```
+
+On debug builds, reload the app to pick up the change. On release builds, a full rebuild is required (`bun run ios:release`). See `.env.example` for all available env vars.
+
 ### Maintenance
 
 | Command         | Description                       |
