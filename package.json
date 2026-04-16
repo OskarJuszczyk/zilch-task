@@ -20,7 +20,7 @@
         "format:fix": "bun oxfmt --write",
         "format:fix:all": "bun oxfmt --write .",
         "format:check": "bun oxfmt --check",
-        "test:e2e": "maestro test .maestro/",
+        "test:e2e": "maestro test --debug-output .maestro/screenshots .maestro/flows/",
         "test:e2e:single": "maestro test",
         "test:unit:changed": "jest -o --watch --coverage=false",
         "test:unit:watch": "jest --watchAll",

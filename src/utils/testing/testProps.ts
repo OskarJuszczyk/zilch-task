@@ -13,7 +13,7 @@ export const getTestProps = ({ testID, isPressable }: TestProps) => {
     if (Platform.OS === 'ios') {
         return {
             testID,
-            accessible: isPressable ? true : false, //https://reactnative.dev/docs/accessibility#accessible
+            accessible: isPressable ?? false,
         };
     }
 

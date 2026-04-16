@@ -1,0 +1,15 @@
+appId: com.ZilchTask
+---
+- launchApp
+- assertVisible:
+    id: "unlock-details"
+- assertVisible: "Card details"
+- assertVisible:
+    id: "freeze"
+- assertVisible: "Freeze"
+- assertVisible:
+    id: "limit"
+- assertVisible: "Limits"
+- assertVisible:
+    id: "settings"
+- assertVisible: "Settings"

@@ -1,0 +1,40 @@
+appId: com.ZilchTask
+---
+- launchApp
+- assertVisible: "Mortgage Payments"
+# Swipe to card 2 (BLOCKED)
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- assertVisible: "Travel & Entertainment"
+- assertVisible:
+    id: "card-info-banner"
+- assertVisible:
+    text: ".*This card is currently blocked.*"
+- assertNotVisible:
+    id: "unlock-details"
+# Swipe to card 3 (PENDING)
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- assertVisible: "Emerald Payments"
+- assertVisible:
+    text: ".*generating your card details.*"
+# Swipe to card 5 (EXPIRED) - skip card 4 (FROZEN, shows actions not banner)
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- assertVisible: "Sapphire Investments"
+- assertVisible:
+    text: ".*This card has expired.*"
