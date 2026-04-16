@@ -101,11 +101,13 @@ Failed tests produce screenshots in `.maestro/screenshots/`.
 
 **Biometric bypass for E2E:**
 
-Flow 06 taps "Card details" which triggers biometrics. Build with bypass:
+Flow 06 taps "Card details" which triggers biometrics. To bypass, add to `.env.local`:
 
-```bash
-EXPO_PUBLIC_E2E_BYPASS_BIOMETRICS=true bun run ios
 ```
+EXPO_PUBLIC_E2E_BYPASS_BIOMETRICS=true
+```
+
+On debug builds, reload the app to pick up the change. On release builds, a full rebuild is required (`bun run ios:release`). See `.env.example` for all available env vars.
 
 ### Maintenance
 
