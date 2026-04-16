@@ -1,7 +1,7 @@
 module.exports = {
     preset: 'jest-expo',
     testTimeout: 60000,
-    setupFiles: ['@shopify/react-native-skia/jestSetup.js', 'react-native-unistyles/mocks'],
+    setupFiles: ['@shopify/react-native-skia/jestSetup.js', 'react-native-unistyles/mocks', './src/styles/unistyles.ts'],
     setupFilesAfterEnv: ['<rootDir>/jest.setup.ts', '<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js'],
     testMatch: ['**/src/**/?(*.)+(spec|test).ts?(x)'],
     moduleFileExtensions: ['js', 'ts', 'tsx'],
