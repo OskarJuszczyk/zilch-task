@@ -17,6 +17,7 @@
         "prebuild:clean": "bun prebuild --clean",
         "type:check": "tsgo",
         "type:check:clean": "rm -f .tsbuildinfo && tsgo",
+        "type:check:watch": "tsgo --watch",
         "format:fix": "bun oxfmt --write",
         "format:fix:all": "bun oxfmt --write .",
         "format:check": "bun oxfmt --check",
