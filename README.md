@@ -6,7 +6,6 @@ React Native showcase app built with Expo SDK 55. Demonstrates cards management 
 
 <img width="221" height="480" alt="zilch-task-recording-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/e9a68dca-c62e-4649-9e16-57b4f009a50e" />
 
-
 ## Prerequisites
 
 - [Bun](https://bun.sh/) >= 1.3.10
@@ -81,7 +80,7 @@ bun run ios                  # Build & run on iOS Simulator
 **Running tests:**
 
 ```bash
-bun run test:e2e                                    # Run all 8 flows
+bun run test:e2e                                    # Run all flows
 bun run test:e2e:single .maestro/flows/01_app_launch.yaml  # Run single flow
 ```
 
@@ -89,16 +88,18 @@ Failed tests produce screenshots in `.maestro/screenshots/`.
 
 **Flows:**
 
-| Flow                      | What it tests                              |
-| ------------------------- | ------------------------------------------ |
-| `01_app_launch`           | First card visible, action buttons present |
-| `02_carousel_navigation`  | Swipe between cards, banner/actions toggle |
-| `03_active_card_actions`  | Button labels and testIDs                  |
-| `04_freeze_unfreeze`      | Freeze toggle with animation wait          |
-| `05_status_banners`       | BLOCKED/PENDING/EXPIRED banner text        |
-| `06_card_details_sheet`   | Bottom sheet open, content, dismiss        |
-| `07_frozen_card_behavior` | Pre-frozen card shows unfreeze             |
-| `08_disabled_buttons`     | Limits/Settings tap does nothing           |
+| Flow                           | What it tests                                                            |
+| ------------------------------ | ------------------------------------------------------------------------ |
+| `01_app_launch`                | First card visible, Physical type label, 4 action buttons present        |
+| `02_carousel_navigation`       | Swipe between cards, banner/actions toggle                               |
+| `03_active_card_actions`       | All 4 button labels and testIDs (Card details, Freeze, Limits, Settings) |
+| `04_freeze_unfreeze`           | Freeze toggle with animation wait                                        |
+| `05_status_banners`            | BLOCKED/PENDING/EXPIRED banner text                                      |
+| `06_card_details_sheet`        | Bottom sheet open, content, dismiss                                      |
+| `07_frozen_card_behavior`      | Pre-frozen "Frozen Card" shows "Card frozen" banner and Unfreeze button  |
+| `08_disabled_buttons`          | Limits/Settings tap does nothing                                         |
+| `09_biometric_session_timeout` | Biometric unlock starts session; lock reappears after 30 s timeout       |
+| `10_virtual_card_label`        | Virtual type label visible on Shopping Card                              |
 
 **Biometric bypass for E2E:**
 

@@ -1,0 +1,11 @@
+appId: com.ZilchTask
+---
+- launchApp
+- assertVisible: "Mortgage Payments"
+# Swipe to card 2 (Shopping Card - VIRTUAL, ACTIVE)
+- swipe:
+    start: "85%, 40%"
+    end: "15%, 40%"
+    duration: 300
+- assertVisible: "Shopping Card"
+- assertVisible: "Virtual"
