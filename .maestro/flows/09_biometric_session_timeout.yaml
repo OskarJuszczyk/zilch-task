@@ -1,0 +1,34 @@
+appId: com.ZilchTask
+# Requires E2E build: EXPO_PUBLIC_E2E_BYPASS_BIOMETRICS=true bunx expo run:ios
+---
+- launchApp
+# Assert locked state on launch
+- assertVisible:
+      id: 'unlock-details'
+# Tap to unlock (biometric bypassed in E2E build)
+- tapOn:
+      id: 'unlock-details'
+# Wait for card details sheet to open
+- extendedWaitUntil:
+      visible:
+          id: 'card-details-sheet-content'
+      timeout: 3000
+# Dismiss sheet by tapping outside (top of screen)
+- tapOn:
+      point: '50%,10%'
+- extendedWaitUntil:
+      notVisible:
+          id: 'card-details-sheet-content'
+      timeout: 3000
+# Session active: eye icon visible, lock hidden
+- assertVisible:
+      id: 'view-details'
+- assertNotVisible:
+      id: 'unlock-details'
+# Wait for session timeout (30s) then assert lock reappears
+- extendedWaitUntil:
+      visible:
+          id: 'unlock-details'
+      timeout: 35000
+- assertNotVisible:
+      id: 'view-details'
