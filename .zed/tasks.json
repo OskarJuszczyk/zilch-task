@@ -22,5 +22,12 @@
         "command": "cd $ZED_DIRNAME && bun run test:unit",
         "args": ["$ZED_FILENAME", "--watch"],
         "tags": ["ts-test", "js-test"]
+    },
+    {
+        "label": "Run Maestro flow",
+        "command": "bun run test:e2e:single",
+        "args": ["$ZED_FILE"],
+        "allow_concurrent_runs": false,
+        "reveal": "always"
     }
 ]

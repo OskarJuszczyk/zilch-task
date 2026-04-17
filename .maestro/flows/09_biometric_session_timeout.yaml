@@ -1,6 +1,7 @@
 appId: com.ZilchTask
 # Requires E2E build: EXPO_PUBLIC_E2E_BYPASS_BIOMETRICS=true bunx expo run:ios
 ---
+- clearState
 - launchApp
 # Assert locked state on launch
 - assertVisible:

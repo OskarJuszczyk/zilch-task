@@ -1,5 +1,6 @@
 appId: com.ZilchTask
 ---
+- clearState
 - launchApp
 - assertVisible: "Mortgage Payments"
 - assertVisible: "Physical"

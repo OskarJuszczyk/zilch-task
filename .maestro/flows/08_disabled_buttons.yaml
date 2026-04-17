@@ -1,5 +1,6 @@
 appId: com.ZilchTask
 ---
+- clearState
 - launchApp
 - assertVisible: "Mortgage Payments"
 # Tap disabled Limits button - nothing should happen

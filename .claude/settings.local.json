@@ -3,7 +3,8 @@
     "allow": [
       "Bash(bun run *)",
       "WebFetch(domain:docs.swmansion.com)",
-      "mcp__maestro__query_docs"
+      "mcp__maestro__query_docs",
+      "mcp__maestro__run_flow_files"
     ]
   },
   "enableAllProjectMcpServers": true,
