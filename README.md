@@ -37,12 +37,12 @@ bun run ios              # Run on iOS simulator
 
 ### Building
 
-| Command                  | Description                                        |
-| ------------------------ | -------------------------------------------------- |
-| `bun run prebuild`       | Generate native projects (ios/android dirs)        |
-| `bun run prebuild:clean` | Clean prebuild (removes + regenerates native dirs) |
-| `bun run ios:release`    | iOS release build                                  |
-| `bun run android:release`| Android release build                              |
+| Command                   | Description                                        |
+| ------------------------- | -------------------------------------------------- |
+| `bun run prebuild`        | Generate native projects (ios/android dirs)        |
+| `bun run prebuild:clean`  | Clean prebuild (removes + regenerates native dirs) |
+| `bun run ios:release`     | iOS release build                                  |
+| `bun run android:release` | Android release build                              |
 
 ### Code Quality
 
@@ -89,16 +89,16 @@ Failed tests produce screenshots in `.maestro/screenshots/`.
 
 **Flows:**
 
-| Flow | What it tests |
-|------|--------------|
-| `01_app_launch` | First card visible, action buttons present |
-| `02_carousel_navigation` | Swipe between cards, banner/actions toggle |
-| `03_active_card_actions` | Button labels and testIDs |
-| `04_freeze_unfreeze` | Freeze toggle with animation wait |
-| `05_status_banners` | BLOCKED/PENDING/EXPIRED banner text |
-| `06_card_details_sheet` | Bottom sheet open, content, dismiss |
-| `07_frozen_card_behavior` | Pre-frozen card shows unfreeze |
-| `08_disabled_buttons` | Limits/Settings tap does nothing |
+| Flow                      | What it tests                              |
+| ------------------------- | ------------------------------------------ |
+| `01_app_launch`           | First card visible, action buttons present |
+| `02_carousel_navigation`  | Swipe between cards, banner/actions toggle |
+| `03_active_card_actions`  | Button labels and testIDs                  |
+| `04_freeze_unfreeze`      | Freeze toggle with animation wait          |
+| `05_status_banners`       | BLOCKED/PENDING/EXPIRED banner text        |
+| `06_card_details_sheet`   | Bottom sheet open, content, dismiss        |
+| `07_frozen_card_behavior` | Pre-frozen card shows unfreeze             |
+| `08_disabled_buttons`     | Limits/Settings tap does nothing           |
 
 **Biometric bypass for E2E:**
 

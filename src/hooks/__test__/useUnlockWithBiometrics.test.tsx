@@ -1,9 +1,8 @@
-import { renderHook, act } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-native';
 import { getDefaultStore } from 'jotai';
 
 import { useUnlockWithBiometrics } from '@hooks/useUnlockWithBiometrics';
-import * as globalStoreModule from '@store/globalStore';
-import { biometricAuthTimestampAtom } from '@store/globalStore';
+import { biometricAuthTimestampAtom } from '@store/biometricsStore';
 import { confirmWithBiometrics } from '@utils/confirmWithBiometrics';
 
 jest.mock('@utils/confirmWithBiometrics', () => ({
@@ -15,7 +14,6 @@ const mockConfirmWithBiometrics = confirmWithBiometrics as jest.MockedFunction<t
 const store = getDefaultStore();
 
 beforeEach(() => {
-    jest.replaceProperty(globalStoreModule, 'globalJotaiStore', store);
     store.set(biometricAuthTimestampAtom, null);
 });
 

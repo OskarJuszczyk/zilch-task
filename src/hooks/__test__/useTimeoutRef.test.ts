@@ -14,7 +14,7 @@ describe('useTimeoutRef', () => {
     it('returns ref with initial null value', () => {
         const { result } = renderHook(() => useTimeoutRef());
 
-        expect(result.current.current).toBeNull();
+        expect(result.current.ref.current).toBeNull();
     });
 
     it('clears timeout on unmount when ref holds a timeout ID', () => {
@@ -23,7 +23,7 @@ describe('useTimeoutRef', () => {
         const { result, unmount } = renderHook(() => useTimeoutRef());
 
         act(() => {
-            result.current.current = setTimeout(() => {}, 5000);
+            result.current.ref.current = setTimeout(() => {}, 5000);
         });
 
         unmount();
@@ -36,5 +36,36 @@ describe('useTimeoutRef', () => {
         const { unmount } = renderHook(() => useTimeoutRef());
 
         expect(() => unmount()).not.toThrow();
+    });
+
+    it('cleanRef clears timeout and nulls ref', () => {
+        const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout');
+
+        const { result } = renderHook(() => useTimeoutRef());
+
+        act(() => {
+            result.current.ref.current = setTimeout(() => {}, 5000);
+        });
+
+        act(() => {
+            result.current.cleanRef();
+        });
+
+        expect(clearTimeoutSpy).toHaveBeenCalled();
+        expect(result.current.ref.current).toBeNull();
+        clearTimeoutSpy.mockRestore();
+    });
+
+    it('cleanRef does nothing when ref is null', () => {
+        const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout');
+
+        const { result } = renderHook(() => useTimeoutRef());
+
+        act(() => {
+            result.current.cleanRef();
+        });
+
+        expect(clearTimeoutSpy).not.toHaveBeenCalled();
+        clearTimeoutSpy.mockRestore();
     });
 });

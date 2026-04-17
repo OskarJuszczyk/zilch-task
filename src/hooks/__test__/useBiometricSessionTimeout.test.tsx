@@ -1,11 +1,10 @@
 import { AppStateEvent } from 'react-native';
 
-import { renderHook, act, waitFor } from '@testing-library/react-native';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { getDefaultStore } from 'jotai';
 
 import { useBiometricSessionTimeout } from '@hooks/useBiometricSessionTimeout';
-import * as globalStoreModule from '@store/globalStore';
-import { biometricAuthTimestampAtom } from '@store/globalStore';
+import { biometricAuthTimestampAtom } from '@store/biometricsStore';
 import { mockAppState } from '@utils/mocks/mockAppState';
 
 const store = getDefaultStore();
@@ -14,10 +13,10 @@ let mockChangeState: ReturnType<typeof mockAppState>['mockChangeState'];
 
 beforeEach(() => {
     jest.useFakeTimers();
-    jest.replaceProperty(globalStoreModule, 'globalJotaiStore', store);
     store.set(biometricAuthTimestampAtom, null);
 
-    ({ mockChangeState } = mockAppState({ initialState: 'active' }));
+    const { mockChangeState: _mockChangeState } = mockAppState({ initialState: 'active' });
+    mockChangeState = _mockChangeState;
 });
 
 afterEach(() => {
@@ -67,7 +66,7 @@ describe('useBiometricSessionTimeout', () => {
         expect(store.get(biometricAuthTimestampAtom)).toBeNull();
     });
 
-    it('clears session when app goes to background', async () => {
+    it('pauses timeout when app goes to background', async () => {
         renderHook(() => useBiometricSessionTimeout());
 
         act(() => {
@@ -78,10 +77,10 @@ describe('useBiometricSessionTimeout', () => {
 
         await waitFor(() => mockChangeState(changeType, 'background'));
 
-        expect(store.get(biometricAuthTimestampAtom)).toBeNull();
+        expect(store.get(biometricAuthTimestampAtom)).not.toBeNull();
     });
 
-    it('clears session when app goes inactive', async () => {
+    it('pauses timeout when app goes inactive', async () => {
         renderHook(() => useBiometricSessionTimeout());
 
         act(() => {
@@ -90,19 +89,85 @@ describe('useBiometricSessionTimeout', () => {
 
         await waitFor(() => mockChangeState(changeType, 'inactive'));
 
-        expect(store.get(biometricAuthTimestampAtom)).toBeNull();
+        expect(store.get(biometricAuthTimestampAtom)).not.toBeNull();
     });
 
-    it('does not clear session when app comes to foreground', async () => {
+    it('does not clear session after timeout elapses while app is in background', async () => {
         renderHook(() => useBiometricSessionTimeout());
 
         act(() => {
             store.set(biometricAuthTimestampAtom, Date.now());
         });
 
+        await waitFor(() => mockChangeState(changeType, 'background'));
+
+        act(() => {
+            jest.advanceTimersByTime(35_000);
+        });
+
+        expect(store.get(biometricAuthTimestampAtom)).not.toBeNull();
+    });
+
+    it('resumes timeout when app returns to active', async () => {
+        renderHook(() => useBiometricSessionTimeout());
+
+        act(() => {
+            store.set(biometricAuthTimestampAtom, Date.now());
+        });
+
+        await waitFor(() => mockChangeState(changeType, 'background'));
         await waitFor(() => mockChangeState(changeType, 'active'));
 
         expect(store.get(biometricAuthTimestampAtom)).not.toBeNull();
+    });
+
+    it('clears session after remaining time when app resumes from background', async () => {
+        renderHook(() => useBiometricSessionTimeout());
+
+        act(() => {
+            store.set(biometricAuthTimestampAtom, Date.now());
+        });
+
+        act(() => {
+            jest.advanceTimersByTime(20_000);
+        });
+
+        await waitFor(() => mockChangeState(changeType, 'background'));
+        await waitFor(() => mockChangeState(changeType, 'active'));
+
+        act(() => {
+            jest.advanceTimersByTime(9_999);
+        });
+
+        expect(store.get(biometricAuthTimestampAtom)).not.toBeNull();
+
+        act(() => {
+            jest.advanceTimersByTime(10);
+        });
+
+        waitFor(() => expect(store.get(biometricAuthTimestampAtom)).toBeNull());
+    });
+
+    it('clears session immediately when already expired on resume', async () => {
+        renderHook(() => useBiometricSessionTimeout());
+
+        act(() => {
+            store.set(biometricAuthTimestampAtom, Date.now());
+        });
+
+        act(() => {
+            jest.advanceTimersByTime(5_000);
+        });
+
+        await waitFor(() => mockChangeState(changeType, 'background'));
+
+        act(() => {
+            jest.advanceTimersByTime(26_000);
+        });
+
+        await waitFor(() => mockChangeState(changeType, 'active'));
+
+        waitFor(() => expect(store.get(biometricAuthTimestampAtom)).toBeNull());
     });
 
     it('resets timeout when timestamp changes', () => {

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useAtomValue, useSetAtom } from 'jotai';
 
-import { biometricAuthTimestampAtom } from '@store/globalStore';
+import { biometricAuthTimestampAtom } from '@store/biometricsStore';
 import { confirmWithBiometrics } from '@utils/confirmWithBiometrics';
 
 type UseUnlockWithBiometricsParams = {

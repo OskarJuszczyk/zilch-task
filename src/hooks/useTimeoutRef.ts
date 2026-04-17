@@ -1,17 +1,23 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { RefObject, useCallback, useEffect, useRef } from 'react';
 
-export function useTimeoutRef(): RefObject<ReturnType<typeof setTimeout> | number | null> {
+type Ref = RefObject<ReturnType<typeof setTimeout> | number | null>;
+
+export function useTimeoutRef(): {
+    ref: Ref;
+    cleanRef: VoidFunction;
+} {
     const ref = useRef<ReturnType<typeof setTimeout> | number | null>(null);
 
+    const cleanRef = useCallback(() => {
+        if (ref.current) {
+            clearTimeout(ref.current);
+            ref.current = null;
+        }
+    }, [ref]);
+
     useEffect(() => {
-        const cleanup = () => {
-            if (ref.current) {
-                clearTimeout(ref.current);
-            }
-        };
+        return cleanRef;
+    }, [cleanRef]);
 
-        return cleanup;
-    }, []);
-
-    return ref;
+    return { ref, cleanRef };
 }
