@@ -16,7 +16,6 @@ import { globalJotaiStore } from '@store/globalStore';
 export function SetupApp({ children }: PropsWithChildren) {
     const navigationRef = useNavigationContainerRef();
     useReactNavigationDevTools(navigationRef);
-    useBiometricSessionTimeout();
 
     return (
         <Provider store={globalJotaiStore}>
@@ -24,9 +23,15 @@ export function SetupApp({ children }: PropsWithChildren) {
                 <ReducedMotionConfig mode={__DEV__ ? ReduceMotion.Never : ReduceMotion.System} />
                 <SheetProvider>
                     <Sheets />
-                    {children}
+                    <GlobalHooksWrapper>{children}</GlobalHooksWrapper>
                 </SheetProvider>
             </GestureHandlerRootView>
         </Provider>
     );
 }
+
+const GlobalHooksWrapper = ({ children }: PropsWithChildren) => {
+    useBiometricSessionTimeout();
+
+    return children;
+};

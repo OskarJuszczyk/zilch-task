@@ -1,5 +1,3 @@
-import { atom, createStore } from 'jotai';
+import { createStore } from 'jotai';
 
 export const globalJotaiStore = createStore();
-
-export const biometricAuthTimestampAtom = atom<number | null>(null);
