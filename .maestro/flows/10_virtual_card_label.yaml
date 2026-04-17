@@ -1,5 +1,6 @@
 appId: com.ZilchTask
 ---
+- clearState
 - launchApp
 - assertVisible: "Mortgage Payments"
 # Swipe to card 2 (Shopping Card - VIRTUAL, ACTIVE)
